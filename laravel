@@ -1,0 +1,24 @@
+#!/bin/bash
+time(
+runuser -l rodrigo -c "composer create-project --prefer-dist laravel/laravel /var/www/html/$1"
+runuser -l rodrigo -c "cp /var/www/html/$1/server.php /var/www/html/$1/index.php"
+echo "
+  <VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    ServerName  $1.xyz
+    DocumentRoot /var/www/html/$1/public
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+    <Directory /var/www/html/$1/public/> 
+      Options Includes FollowSymLinks 
+      AllowOverride All 
+      Order allow,deny 
+      Allow from all 
+   </Directory> 
+  </VirtualHost>
+" > /etc/apache2/sites-available/$1.conf
+sed  -i '1i 127.0.0.1\t '$1'.xyz' /etc/hosts
+a2ensite $1.conf
+systemctl reload apache2
+echo "Apache Recarregado"
+)
