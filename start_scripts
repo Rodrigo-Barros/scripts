@@ -1,3 +1,9 @@
 #!/bin/bash
 cd $HOME/.config/scripts
+#--Scripts
+
 ./microfone
+
+#--Custom commands
+
+cp $HOME/.zshrc $HOME/.config/scripts/.zshrc

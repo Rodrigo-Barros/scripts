@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /opt/Android/Sdk/emulator/
+./emulator $1
+cd -

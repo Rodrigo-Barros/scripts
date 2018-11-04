@@ -5,7 +5,12 @@
   export ZSH="/home/rodrigo/.oh-my-zsh"
 # Variaveis de Ambiente
   export ANDROID_HOME=/opt/Android/Sdk
+#  export ANDROID_SDK_HOME=/home/rodrigo/.android
   export PATH=${PATH}:/opt/Android/Sdk/platform-tools:/opt/Android/Sdk/tools:/opt/android-studio/gradle/gradle-4.6/bin/
+#  export PATH=$PATH:/opt/Android/Sdk/emulator em caso de erros descomentar
+  export PATH=$PATH:/opt/Android/Sdk/tools
+  export PATH=$PATH:/opt/Android/Sdk/tools/bin
+  export PATH=$PATH:/opt/Android/Sdk/platform-tools
   export _JAVA_OPTIONS=-Djava.io.tmpdir=/home/rodrigo/.tmp
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -111,7 +116,7 @@ alias reloadbash='source ~/.bashrc'
 alias reloadzsh='source ~/.zshrc'
 alias web_server='sudo /usr/bin/server'
 alias laravel='sudo /usr/bin/laravel'
-
+alias emulator='/opt/Android/Sdk/tools/emulator $1'
 # power Theme config
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_MODE='awesome-patched'
