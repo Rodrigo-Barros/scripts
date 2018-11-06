@@ -1,0 +1,12 @@
+#!/bin/bash
+if [ $1 = "--help" ] || [ $1 = "-h" ]
+then
+  echo -e "O primeiro argumento é o tema a ser usado e o segundo a pasta a ser criada no raiz do servidor conforme o seguinte exemplo: \n\ntemplate tema pasta"
+elif [ $1 = "-l"]
+  ls -l /var/www/html/models
+then 
+
+else
+  mkdir /var/www/html/$2
+  cp -r /var/www/html/models/$1/* /var/www/html/$2
+fi

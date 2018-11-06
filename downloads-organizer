@@ -13,6 +13,7 @@ mv *.docx "Arquivos de Texto"
 mv *.torrent Torrents
 mv *.zip Compactados
 mv *.tar.gz Compactados
+mv *.tar.xz Compactados
 mv *.rar Compactados
 mv *.jpg "$UserDir/Imagens/Imagens Baixadas"
 mv *.jpeg "$UserDir/Imagens/Imagens Baixadas"
@@ -25,4 +26,4 @@ mv *.deb "Executaveis"
 mv *.sh "scripts baixados"
 mv *.py "scripts baixados"
 mv *.iso "Isos"
-
+mv *.mp3 "$UserDir/Música"
