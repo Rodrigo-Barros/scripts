@@ -3,7 +3,7 @@ cd $HOME/.config/scripts
 #--Scripts
 
 ./microfone
-
+./downloads-organizer
 #--Custom commands
 
 cp $HOME/.zshrc $HOME/.config/scripts/.zshrc
