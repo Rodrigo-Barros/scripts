@@ -1,9 +1,10 @@
 #!/bin/bash
 
 root=/var/www/html
-provider="http://177.234.151.251/~"
+#provider="http://177.234.151.251/~"
 function PrintUsage(){
   echo "
+  -s Altera para https
 
   -h imprime essa lista de comandos
 
@@ -23,13 +24,13 @@ function PrintUsage(){
 
   Dica Útil:
 
-  Você irá desenvolver um site em HTTP ou HTTPS? Caso Seja em HTTPS você necessitará alterar a variavel 
-  provider desse script, para não ter dores de cabeça
+  Você irá desenvolver um site em HTTP ou HTTPS? Caso Seja em HTTPS Especifique a opção -g na linha de comandos
 
   Script para automatizar o desenvolvimento de sites feito por: Rodrigo Gabrie, 2018 Todos os direitos Reservados
   "
+  exit 0
 }
-while getopts hlmfp:s: OPCAO; do
+while getopts ghlmfp:s: OPCAO; do
   case "${OPCAO}" in
     s) site=${OPTARG};;
     h) PrintUsage ;;
@@ -37,11 +38,18 @@ while getopts hlmfp:s: OPCAO; do
     l) l=1;;#low
     m) m=1;;#medium
     f) f=1;;#full
+    g) g=1;;#change to https
   esac
 done
 
 shift $((OPTIND-1))
-projectPath=$root/$p
+if [ "$g" == 1 ];then
+  provider="https://177.234.151.251/~"
+else
+  provider="http://177.234.151.251/~"
+fi
+  projectPath=$root/$p
+
 if [ -z "$site" ] && [ -z "$p" ] && [ -z "$l" ] && [ -z "$m" ] && [ -z "$f" ]; then
    PrintUsage
 fi
@@ -68,7 +76,7 @@ else
 fi
 
 #low
-if [ "$l" ];then
+if [ "$l" == 1 ];then
 
   find $projectPath/artigo.php 2> /dev/null
   if [[ $? -ne 0 ]]; then
@@ -102,7 +110,7 @@ if [ "$l" ];then
 fi
 
 #medium
-if [[ "$m" ]]; then
+if [[ "$m" == 1 ]]; then
   find $projectPath/artigo.php
   if [[ $? -ne 0 ]]; then
     echo "
@@ -150,7 +158,7 @@ if [[ "$m" ]]; then
 fi
 
 #full
-if [[ "$f" ]]; then
+if [[ "$f" == 1 ]]; then
   find $projectPath/artigo.php
   if [[ $? -ne 0 ]]; then
     echo "

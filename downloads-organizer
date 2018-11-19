@@ -2,7 +2,6 @@
 UserDir=$HOME
 download=$UserDir/Downloads
 cd $download
-echo $download
 
 mv *.txt "Arquivos de Texto"
 mv *.pdf "Arquivos de Texto"
