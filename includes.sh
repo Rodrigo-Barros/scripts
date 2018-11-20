@@ -4,7 +4,7 @@ root=/var/www/html
 #provider="http://177.234.151.251/~"
 function PrintUsage(){
   echo "
-  -s Altera para https
+  -g Altera para https
 
   -h imprime essa lista de comandos
 
@@ -43,13 +43,16 @@ while getopts ghlmfp:s: OPCAO; do
 done
 
 shift $((OPTIND-1))
+
 if [ "$g" == 1 ];then
   provider="https://177.234.151.251/~"
 else
   provider="http://177.234.151.251/~"
 fi
-  projectPath=$root/$p
 
+projectPath=$root/$p
+
+#---------------- print help--------------------------
 if [ -z "$site" ] && [ -z "$p" ] && [ -z "$l" ] && [ -z "$m" ] && [ -z "$f" ]; then
    PrintUsage
 fi
@@ -69,6 +72,16 @@ fi
   find $projectPath/goupsistema/assets/js 2> /dev/null
   if [[ $? -ne 0 ]];then
     mkdir $projectPath/goupsistema/assets/js -p
+    #verifica se consumers.js e application.js estão criados senão estiverem os cria
+    find $projectPath/goupsistema/assets/js/consumers.js
+    if [[ $? -ne 0 ]];then
+      echo "" > $projectPath/goupsistema/assets/js/consumers.js
+    fi
+
+    find $projectPath/goupsistema/assets/js/application.js
+    if [[ $? -ne 0 ]];then
+      echo "" > $projectPath/goupsistema/assets/js/application.js
+    fi
   fi
 else
   echo "é necessário fornecer o nome do site para prosseguir"
