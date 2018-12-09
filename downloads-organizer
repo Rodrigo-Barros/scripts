@@ -25,4 +25,8 @@ mv *.deb "Executaveis"
 mv *.sh "scripts baixados"
 mv *.py "scripts baixados"
 mv *.iso "Isos"
-mv *.mp3 "$UserDir/Música"
+mv *.mp3 "$UserDir/Músicas"
+
+if [[ $? -ne 0 ]]; then
+  mv *.* "$UserDir/Downloads/sem categoria"
+fi
