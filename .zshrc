@@ -118,6 +118,8 @@ alias reloadbash='source ~/.bashrc'
 alias reloadzsh='source ~/.zshrc'
 alias web_server='sudo /usr/bin/server'
 alias laravel='sudo /usr/bin/laravel'
+
+neofetch
 #alias emulator='/opt/Android/Sdk/emulator $1'
 # power Theme config
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2

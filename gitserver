@@ -1,0 +1,116 @@
+#!/bin/bash
+
+function automate(){
+echo "Informe o nome do site para criar e clonar do repositório"
+read site
+mkdir -p /var/www/html/SitesGit/Main/$site
+mkdir -p /var/www/html/SitesGit/Local/$site
+git clone ssh://git@localhost:/home/git/$site /var/www/html/SitesGit/Main/$site
+git clone ssh://git@localhost:/home/git/$site /var/www/html/SitesGit/Local/$site
+#git clone /home/git/$site /var/www/html/SitesGit/Main/$site
+#git clone /home/git/$site /var/www/html/SitesGit/Local/$site
+echo "
+    <VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    ServerName  $site.serveo.net
+    DocumentRoot /var/www/html/SitesGit/Main/$site
+    ErrorLog /error.log
+    CustomLog /access.log combined
+    <Directory /var/www/html/SitesGit/Main/$site> 
+      Options Includes FollowSymLinks 
+      AllowOverride All 
+      Order allow,deny 
+      Allow from all 
+   </Directory> 
+  </VirtualHost>
+
+  <VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    ServerName  $site.local
+    DocumentRoot /var/www/html/SitesGit/Local/$site
+    ErrorLog /error.log
+    CustomLog /access.log combined
+    <Directory /var/www/html/SitesGit/Local/$site> 
+      Options Includes FollowSymLinks 
+      AllowOverride All 
+      Order allow,deny 
+      Allow from all 
+   </Directory> 
+  </VirtualHost>
+" > "/tmp/$site.conf"
+
+sudo cp /tmp/$site.conf /etc/apache2/sites-available/
+
+sudo sed  -i '3i 159.89.214.31\t'$site'.serveo.net' /etc/hosts
+sudo sed  -i '3i 127.0.0.1\t'$site'.local' /etc/hosts
+#atualiza e elimina linhas duplicadas no arquivo hosts
+awk '!v[$0]{ print; v[$0]=1 }' /etc/hosts > /tmp/hosts
+sudo cp /tmp/hosts /etc/hosts
+sudo rm /tmp/hosts
+
+echo "Arquivo Hosts Atualizado"
+
+rm /tmp/$site.conf
+
+sudo a2ensite $site > /dev/null
+reloadApache
+
+echo "Apache recarregado"
+echo "pronto"
+}
+function reloadApache(){
+  sudo systemctl reload apache2
+}
+
+function listarSites(){
+  sudo a2query -s
+  echo -e "\n\npara habilitar um site digite 1, para desabilitar um site digite 2"
+  read inputSite
+  if [ "$inputSite" = "1" ]
+  then
+    echo "Digite o site a ser habilitado"
+    read inputSite
+    sudo a2ensite $inputSite.conf > /dev/null
+    reloadApache
+    echo "site Habilitado"
+    exit 0
+  elif [ "$inputSite" = "2" ]
+  then
+    echo "Digite o site a ser desabilitado"
+    read inputSite
+    sudo a2dissite $inputSite.conf > /dev/null
+    reloadApache
+    echo "site Desabilitado"
+    exit 0
+  else
+    echo "Opção invalida saindo do script.."
+    exit 1
+  fi
+}
+
+function removeConfig(){
+  echo "Informe o nome do site para remover a configuração residual"
+  read site
+  rm -rf /var/www/html/SitesGit/Local/$site
+  rm -rf /var/www/html/SitesGit/Main/$site
+  sudo rm /etc/apache2/sites-available/$site.conf
+  sudo sed -i '/^127.0.0.1	'$site'.local$/d' /etc/hosts
+  sudo sed -i '/^159.89.214.31	'$site'.serveo.net$/d' /etc/hosts
+  sudo a2dissite $site
+  reloadApache
+  if [ $? = "0" ]
+  then
+    echo "Apache Recarregado"
+  fi
+}
+
+while getopts alr OPT; do
+  case "${OPT}" in
+    a) automate;;
+    l) listarSites;;
+    r) removeConfig;;
+    c) copiarSite "${OPTARG}";;
+    h) echo "ajuda";;
+    *) echo "conteudo de ajuda";;
+  esac
+done

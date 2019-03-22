@@ -2,8 +2,10 @@
 cd $HOME/.config/scripts
 #--Scripts
 
-./microfone
 ./downloads-organizer
+
+cd /home/rodrigo/.config/scripts/alsaconf
+alsactl --file alsaconfig restore
 #--Custom commands
 
 cp $HOME/.zshrc $HOME/.config/scripts/.zshrc
