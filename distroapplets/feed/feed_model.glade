@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkWindow" id="main_window">
+    <property name="can_focus">False</property>
+    <property name="default_width">1366</property>
+    <property name="default_height">384</property>
+    <property name="gravity">north</property>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkGrid">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="halign">center</property>
+        <property name="margin_left">15</property>
+        <property name="margin_right">15</property>
+        <property name="column_spacing">48</property>
+        <child>
+          <object class="GtkGrid">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkLabel" id="FeedName1">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Portal da manhã</property>
+                <property name="wrap">True</property>
+                <property name="ellipsize">end</property>
+                <property name="lines">3</property>
+                <attributes>
+                  <attribute name="weight" value="heavy"/>
+                  <attribute name="size" value="12000"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="Description1">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ornare blandit scelerisque. Sed pulvinar sapien mi, sed auctor nunc blandit sed. Duis ultricies augue et dolor tincidunt dapibus. Vestibulum vehicula ornare orci, ut sollicitudin lorem ultrices ut. Nunc id dictum libero. Duis dapibus ultricies felis vel venenatis. Morbi laoreet mattis scelerisque. Suspendisse in egestas tortor. Pellentesque feugiat faucibus tellus, quis condimentum risus. Vestibulum pretium sit amet lectus id congue. Donec fermentum lectus nec aliquam fringilla.</property>
+                <property name="justify">fill</property>
+                <property name="wrap">True</property>
+                <property name="ellipsize">end</property>
+                <property name="lines">7</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="pixbuf">/home/rodrigo/Imagens/icons/printer.png</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="Title1">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">label</property>
+                <property name="wrap">True</property>
+                <property name="ellipsize">end</property>
+                <property name="lines">3</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkGrid">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkLabel" id="FeedName2">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Portal da manhã</property>
+                <attributes>
+                  <attribute name="weight" value="heavy"/>
+                  <attribute name="size" value="12000"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="Description2">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Phasellus finibus et nulla a finibus. Integer eu risus a enim commodo convallis quis quis dui. Integer interdum leo sit amet dignissim convallis. Integer egestas velit sit amet viverra bibendum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec at viverra sem. In eros velit, fermentum in condimentum a, dignissim quis nunc. Nam facilisis libero in turpis posuere, sit amet rhoncus diam imperdiet. Ut pellentesque dolor vel magna condimentum, quis mattis dui efficitur. Vestibulum luctus urna in sem viverra aliquam. </property>
+                <property name="justify">fill</property>
+                <property name="wrap">True</property>
+                <property name="ellipsize">end</property>
+                <property name="lines">7</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="pixel_size">200</property>
+                <property name="icon_name">google-chrome</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="Title2">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">label</property>
+                <property name="wrap">True</property>
+                <property name="ellipsize">end</property>
+                <property name="lines">3</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkGrid">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkLabel" id="FeedName3">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Portal da manhã</property>
+                <attributes>
+                  <attribute name="weight" value="heavy"/>
+                  <attribute name="size" value="12000"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="Description3">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Phasellus finibus et nulla a finibus. Integer eu risus a enim commodo convallis quis quis dui. Integer interdum leo sit amet dignissim convallis. Integer egestas velit sit amet viverra bibendum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec at viverra sem. In eros velit, fermentum in condimentum a, dignissim quis nunc. Nam facilisis libero in turpis posuere, sit amet rhoncus diam imperdiet. Ut pellentesque dolor vel magna condimentum, quis mattis dui efficitur. Vestibulum luctus urna in sem viverra aliquam. </property>
+                <property name="justify">fill</property>
+                <property name="wrap">True</property>
+                <property name="ellipsize">end</property>
+                <property name="lines">7</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="pixel_size">200</property>
+                <property name="icon_name">steam</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="Title3">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">label</property>
+                <property name="wrap">True</property>
+                <property name="ellipsize">end</property>
+                <property name="lines">3</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">2</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkGrid">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkLabel" id="FeedName4">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Portal da manhã</property>
+                <attributes>
+                  <attribute name="weight" value="heavy"/>
+                  <attribute name="size" value="12000"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="Description4">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Morbi blandit dictum diam at finibus. Fusce egestas nisl id lectus malesuada, quis iaculis sem ornare. In libero justo, facilisis et purus non, pellentesque interdum purus. Vivamus feugiat turpis id dolor consequat luctus a sed nulla. Curabitur a enim sagittis lorem elementum fermentum. Donec ac gravida mauris, malesuada venenatis nulla. Cras a tincidunt leo. Donec fermentum quis ex at tristique. Phasellus eget placerat eros. </property>
+                <property name="justify">fill</property>
+                <property name="wrap">True</property>
+                <property name="ellipsize">end</property>
+                <property name="lines">7</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="pixel_size">200</property>
+                <property name="icon_name">firefox</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="Title4">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">label</property>
+                <property name="wrap">True</property>
+                <property name="ellipsize">end</property>
+                <property name="lines">3</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">3</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

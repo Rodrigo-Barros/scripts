@@ -35,7 +35,7 @@ for x in range(len(gamefiles)):
                 continue
             else:
                 porcentagem = (baixado / total) * 100
-                print("Download do titulo %s, %.2f%%" % (jogo,porcentagem))
+                print("Download do titulo %s, %.2f%% %.2f MB de %.2f MB" % (jogo,porcentagem,baixado/1000000,total/1000000))
                 sleep(1)
         except KeyError:
             continue

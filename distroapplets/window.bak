@@ -1,0 +1,14 @@
+#!/usr/bin/python2.7
+import gtk
+import time
+
+class PyApp(gtk.Window):
+   def __init__(self):
+      type(super(PyApp, self).__init__())
+      self.set_default_size(1366,768)
+      self.set_title("Hello World in PyGTK")
+      label = gtk.Label("Hello World")
+      self.add(label)
+      self.show_all()
+PyApp()
+gtk.main()

@@ -1,0 +1,6 @@
+#!/bin/bash
+cd /tmp/alsa > /dev/null
+if [ $? -ne 0 ];then
+	mkdir /tmp/alsa > /dev/null
+fi
+stdbuf -oL alsactl monitor | grep --line-buffered Jack > /tmp/alsa/log

@@ -1,11 +1,17 @@
 #!/bin/bash
 cd $HOME/.config/scripts
 #--Scripts
-
+echo -e "iniciando downloads-organizer:\n"
 ./downloads-organizer
+echo -e "\nfinalizando downloads-organizer\n"
 
-cd /home/rodrigo/.config/scripts/alsaconf
-alsactl --file alsaconfig restore
+echo -e "iniciando mozilla-desktop-updater:\n"
+#python python/mozilla/mozilla_desktop_updater.py
+#cd /home/rodrigo/.config/scripts/alsaconf
+#alsactl --file alsaconfig restore
 #--Custom commands
 
 cp $HOME/.zshrc $HOME/.config/scripts/.zshrc
+
+#desabilita o ipv6 na interface wireless
+#sudo sysctl net.ipv6.conf.wlp3s0.disable_ipv6=1

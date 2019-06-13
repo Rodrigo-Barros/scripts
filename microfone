@@ -1,2 +1,0 @@
-#!/bin/bash
-alsactl --file ~/.config/alsa/microfone-workaround.state restore

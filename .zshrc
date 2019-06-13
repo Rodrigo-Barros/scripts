@@ -1,6 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+
+#/usr/bin/time -f "Shell Startup:%E Shell Load:%P" 
 # Path to your oh-my-zsh installation.
   export ZSH="/home/rodrigo/.oh-my-zsh"
 # Variaveis de Ambiente
@@ -114,12 +116,25 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #composer create-project --prefer-dist laravel/laravel blog
 # echo -e "<?php\n\theader("location:/public")\n?>" > index.php'
+
+# user aliases
+
 alias reloadbash='source ~/.bashrc'
 alias reloadzsh='source ~/.zshrc'
 alias web_server='sudo /usr/bin/server'
 alias laravel='sudo /usr/bin/laravel'
+alias devc='cd "/home/rodrigo/Área de Trabalho/" '
+alias goweb='cd /var/www/html'
+alias taskedit='nano $HOME/.conky/TODO/agenda'
+# start up scripts
+#date +'%A %d de %b de %Y %H:%M'
+date +'%A %d de %B:'
+echo ""
+rem | tail -n +3
+date +'%H:%M'
+echo ""
+#exit scripts
 
-neofetch
 #alias emulator='/opt/Android/Sdk/emulator $1'
 # power Theme config
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
