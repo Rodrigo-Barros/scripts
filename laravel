@@ -1,24 +1,152 @@
 #!/bin/bash
+
+basePath="/var/www/html/Laravel"
+
+function projeto() {
+    projectPath="$basePath/Projetos"
+    projectName="$1"
+    runuser -l rodrigo -c "composer create-project --prefer-dist laravel/laravel $projectPath/$projectName '5.7.*'"
+    runuser -l rodrigo -c "cp $projectPath/$projectName/server.php $projectPath/$projectName/index.php"
+    echo "
+      <VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        ServerName  $projectName.xyz
+        DocumentRoot $projectPath/$projectName/public
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+        <Directory $projectPath/$projectName/public/> 
+          Options Includes FollowSymLinks 
+          AllowOverride All 
+          Order allow,deny 
+          Allow from all 
+       </Directory> 
+      </VirtualHost>
+    " > /etc/apache2/sites-available/$projectName.conf
+    sed  -i '1i 127.0.0.1\t '$projectName'.xyz' /etc/hosts 
+    finalSettings $projectName
+}
+
+function finalSettings() {
+    siteName=$1
+    rand=$RANDOM
+    mkdir /tmp/laravel-$rand
+    temp_dir=/tmp/laravel-$rand
+    sort /etc/hosts | uniq -u > $temp_dir/hosts
+    cp $temp_dir/hosts /etc/hosts
+    rm -r $temp_dir
+    a2ensite $siteName.conf
+    systemctl reload apache2
+    echo "Apache Recarregado"
+    exit 0
+}
+
+function help() {
+    echo ""
+    echo -e "Opções:\n"
+    echo "   laravel -p nomedoprojeto com esta opção é criado um projeto com a versão 5.7.x do Laravel no diretório $basePath/Projetos"
+    echo ""
+    echo "   laravel -e nomedoexercicio cria uma projeto laravel no diretório $basePath/Exercicios"
+    echo ""
+    echo "   laravel -v nomedoprojeto versão cria um projeto laravel com a versão especificada no diretorio $basePath/Projetos"
+    echo ""
+}
+
+function exercicio() {
+    exerciciosPath="$basePath/Exercicios"
+    echo $exerciciosPath
+    exName="$1"
+    runuser -l rodrigo -c "composer create-project --prefer-dist laravel/laravel $exerciciosPath/$exName '5.7.*'"
+    runuser -l rodrigo -c "cp $exerciciosPath/$projectName/server.php $exerciciosPath/$exName/index.php"
+    echo "
+      <VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        ServerName  $exName.xyz
+        DocumentRoot $exerciciosPath/$exName/public
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+        <Directory $exerciciosPath/$exName/public/> 
+          Options Includes FollowSymLinks 
+          AllowOverride All 
+          Order allow,deny 
+          Allow from all 
+       </Directory> 
+      </VirtualHost>
+    " > /etc/apache2/sites-available/$exName.conf
+    sed  -i '1i 127.0.0.1\t '$exName'.xyz' /etc/hosts 
+    finalSettings $exName    
+}
+
+
+
+function versao() {    
+    IFS='@' read -a info <<< "${1}" # faz o split doda informação obtida em $1
+    vName=${info[0]}
+    version=${info[1]}    
+    versionPath="$basePath/Projetos"
+    runuser -l rodrigo -c "composer create-project --prefer-dist laravel/laravel $versionPath/$vName '$version.*'"
+    runuser -l rodrigo -c "cp $versionPath/$vName/server.php $versionPath/$vName/index.php"
+    echo "
+      <VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        ServerName  $vName.xyz
+        DocumentRoot $versionPath/$vName/public
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+        <Directory $versionPath/$vName/public/> 
+          Options Includes FollowSymLinks 
+          AllowOverride All 
+          Order allow,deny 
+          Allow from all 
+       </Directory> 
+      </VirtualHost>
+    " > /etc/apache2/sites-available/$vName.conf
+    sed  -i '1i 127.0.0.1\t '$vName'.xyz' /etc/hosts 
+    finalSettings $vName
+}
+
+while getopts :pev:h OPCAO; do
+ case "${OPCAO}" in
+    e)exercicio ${OPTARG};;
+    h)help;;
+    p)projeto ${OPTARG};;
+    v)versao ${OPTARG} ${OPTARG};;
+ esac
+done
+
+
+exit 0
+
+exit
 time(
-runuser -l rodrigo -c "composer create-project --prefer-dist laravel/laravel /var/www/html/$1"
-runuser -l rodrigo -c "cp /var/www/html/$1/server.php /var/www/html/$1/index.php"
-echo "
-  <VirtualHost *:80>
-    ServerAdmin webmaster@localhost
-    ServerName  $1.xyz
-    DocumentRoot /var/www/html/$1/public
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
-    <Directory /var/www/html/$1/public/> 
-      Options Includes FollowSymLinks 
-      AllowOverride All 
-      Order allow,deny 
-      Allow from all 
-   </Directory> 
-  </VirtualHost>
-" > /etc/apache2/sites-available/$1.conf
-sed  -i '1i 127.0.0.1\t '$1'.xyz' /etc/hosts
-a2ensite $1.conf
-systemctl reload apache2
-echo "Apache Recarregado"
+#runuser -l rodrigo -c "composer create-project --prefer-dist laravel/laravel /var/www/html/$1 '$version.*'"
+#runuser -l rodrigo -c "cp /var/www/html/$1/server.php /var/www/html/$1/index.php"
+#echo "
+#  <VirtualHost *:80>
+#    ServerAdmin webmaster@localhost
+#    ServerName  $1.xyz
+#    DocumentRoot /var/www/html/$1/public
+#    ErrorLog ${APACHE_LOG_DIR}/error.log
+#    CustomLog ${APACHE_LOG_DIR}/access.log combined
+#    <Directory /var/www/html/$1/public/> 
+#      Options Includes FollowSymLinks 
+#      AllowOverride All 
+#      Order allow,deny 
+#      Allow from all 
+#   </Directory> 
+#  </VirtualHost>
+#" > /etc/apache2/sites-available/$1.conf
+#sed  -i '1i 127.0.0.1\t '$1'.xyz' /etc/hosts
+
+#elimina linhas duplicadas e coloca o arquivo em ordem alfanúmerica
+rand=$RANDOM
+mkdir /tmp/laravel-$rand
+temp_dir=/tmp/laravel-$rand
+sort /etc/hosts | uniq -u > $temp_dir/hosts
+cp $temp_dir/hosts /etc/hosts
+sleep 80
+rm -r $temp_dir
+exit
+#a2ensite $1.conf
+#systemctl reload apache2
+#echo "Apache Recarregado"
 )
