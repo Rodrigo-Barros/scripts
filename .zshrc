@@ -6,16 +6,10 @@
 # Path to your oh-my-zsh installation.
   export ZSH="/home/rodrigo/.oh-my-zsh"
 # Variaveis de Ambiente
-  export ANDROID_HOME=/opt/Android/Sdk
-#  export ANDROID_SDK_HOME=/home/rodrigo/.android
-  export PATH=${PATH}:/opt/Android/Sdk/platform-tools:/opt/Android/Sdk/tools:/opt/android-studio/gradle/gradle-4.6/bin/
-#  export PATH=$PATH:/opt/Android/Sdk/emulator em caso de erros descomentar
-  export PATH=$PATH:/opt/Android/Sdk/emulator
-  export PATH=$PATH:/opt/Android/Sdk/tools/bin
-  export PATH=$PATH:/opt/Android/Sdk/platform-tools
-  export PATH=$PATH:$ANDROID_SDK
+  export ANDROID_HOME=/home/rodrigo/.android/sdk
+  export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:/$ANDROID_HOME/platform-tools
+  export PATH=$PATH:$ANDROID_HOME/emulator
   export _JAVA_OPTIONS=-Djava.io.tmpdir=/home/rodrigo/.tmp
-  PATH=$PATH:/opt/flutter/bin
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -126,6 +120,10 @@ alias laravel='sudo /usr/bin/laravel'
 alias devc='cd "/home/rodrigo/Área de Trabalho/" '
 alias goweb='cd /var/www/html'
 alias taskedit='nano $HOME/.conky/TODO/agenda'
+alias reload-app='adb shell input text "RR"'
+alias open-app-menu='adb shell input keyevent 82'
+alias emulator='/home/rodrigo/.android/sdk/emulator/emulator'
+alias artisan='php artisan $1'
 # start up scripts
 #date +'%A %d de %b de %Y %H:%M'
 date +'%A %d de %B:'

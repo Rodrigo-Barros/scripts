@@ -42,7 +42,7 @@ for x in url:
         print colored("[Ok]","white","on_green") + " " + url[x]
     except urllib2.HTTPError:
         error=1
-        print(colored("[Erro]","white","on_red") + url[x] + " Arquivo não encotrado")
+        print(colored("[Erro]","white","on_red") + url[x] + " Arquivo não encontrado")
     except urllib2.URLError as e:
         if provider.find("https") != (-1):
             print (colored("[Erro]","white","on_red")+" O site informado tem problemas com o certificado SSL")

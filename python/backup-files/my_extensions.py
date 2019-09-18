@@ -7,12 +7,12 @@ symbolic_link_to_disc = "/dev/sda3"
 
 def desmontar():
 	system("sudo umount -l %s" % partition)
-	system("rm -r %s" % partition)
+	system("rmdir %s" % partition)
 		# system("notify-send 'Trash-Backup:' 'ainda existem arquivos na pasta %s tome uma atitude \nsaindo do script...' " % partition)
 		# system("nemo %s" %partition)
 
 def montar():
 	system("mkdir -p %s" % partition)
 	error_code = system("sudo mount %s %s" % (symbolic_link_to_disc, partition))
-	if error_code == 10:
-		system('ntfsfix %s' % symbolic_link_to_disc)
+	#if error_code == 10 or error_code == 21:
+		#system('ntfsfix %s' % symbolic_link_to_disc)
