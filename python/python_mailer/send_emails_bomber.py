@@ -29,14 +29,14 @@ try:
         msg.attach(MIMEText(content_message, 'plain','utf-8'))
 
         #anexo
-        anexo='/home/rodrigo/Desktop/Rodrigo_Gabriel_Clemente_de_Barros_Currículo.pdf'
+        anexo='/home/rodrigo/Documentos/Educação/CV_DEV.pdf'
         ctype, encoding = mimetypes.guess_type(anexo)
 
         maintype, subtype = ctype.split('/', 1)
         mime = MIMEBase(maintype, subtype)
         f=open(anexo,'rb')
-        mime.set_payload(f.read())
         mime = MIMEBase(maintype, subtype)
+        mime.set_payload(f.read())
         encoders.encode_base64(mime)
         mime.add_header('Content-Disposition', 'attachment', filename=nome_do_anexo)
         msg.attach(mime)
