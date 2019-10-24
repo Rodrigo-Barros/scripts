@@ -1,0 +1,26 @@
+Breve explicacão do funcionamento do script
+
+O script findJob.py busca vagas de trabalho no site indeed
+ele irá te perguntar informações do cargo desajada bem a 
+cidade de trabalho além de outras informações.
+
+Ao finalizar o script serão criadas dois arquivos um chamado
+de vagas.txt que contém as vagas que foram selecionadas de 
+acordo com as palavras chaves que foram excluídas da pesquisa
+, e o outro arquivo que será criado é o de vagas_excluidas.txt
+caso você queira ajustar o arquivo filters.txt
+
+arquivo filters.txt serve para configurar palavras que não 
+devem ser consideradas ao realizar a busca, exemplo você está
+pequisando um emprego de marceneiro porém não deseja exibir 
+vagas que exijam experiência, então simplesmente insira essa 
+palavra no arquivo que nas próximas vezes que você rodas o script
+vagas com essa palavra não serão salvas no seu arquivo de vagas
+
+exemplo arquivo filters:
+
+experiência
+pleno
+senior
+
+basta apenas informar uma palavra por linha seu filtro funcionar

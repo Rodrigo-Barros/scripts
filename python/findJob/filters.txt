@@ -1,0 +1,6 @@
+senior
+sênior
+pleno
+^java$
+C#
+.Net
