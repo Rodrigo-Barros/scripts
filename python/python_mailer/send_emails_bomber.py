@@ -29,7 +29,7 @@ try:
         msg.attach(MIMEText(content_message, 'plain','utf-8'))
 
         #anexo
-        anexo='/home/rodrigo/Documentos/Educação/CV_DEV.pdf'
+        anexo='/home/rodrigo/Documentos/Educação/Currículo.pdf'
         ctype, encoding = mimetypes.guess_type(anexo)
 
         maintype, subtype = ctype.split('/', 1)

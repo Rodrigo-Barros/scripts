@@ -1,6 +1,0 @@
-#!/bin/bash
-site=$1
-apache_path="/var/www/html"
-cd $apache_path
-git clone ssh://pi@10.0.0.103/mnt/Repos/$site $apache_path/$site
-echo "esse script apenas copia os arquivos do servidor"

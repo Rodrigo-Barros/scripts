@@ -1,4 +1,0 @@
-# executa scripts ao encerrar uma sessão do X
-#/home/rodrigo/.config/scripts/alsaconf/MicSaveConf
-#copiar as planilhas para o drive de backup
-python /home/rodrigo/.config/scripts/python/copy-sheet/main.py

@@ -1,3 +1,0 @@
-cd /home/rodrigo/.config/scripts/alsaconf
-alsactl --file alsaconfig store
-

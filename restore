@@ -1,3 +1,0 @@
-#!/bin/bash
-mkdir $HOME/.config/scripts
-git clone git@github.com:Rodrigo-Barros/scripts.git $HOME/.config/scripts

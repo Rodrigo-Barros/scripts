@@ -7,6 +7,8 @@ import glob
 
 # diretorio steam apps alterar conforme o necessário
 steamAppsDir = "/home/rodrigo/.steam/steam/steamapps/"
+#steamAppsDir = "/media/gamedisk/Program Files (x86)/Steam/steamapps/"
+
 os.chdir(steamAppsDir)
 gamefiles = []
 

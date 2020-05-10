@@ -1,5 +1,7 @@
 # encoding: utf-8
 import urllib 
+from urllib import parse
+from urllib import request
 from bs4 import BeautifulSoup
 from time import sleep
 import re
@@ -39,10 +41,10 @@ def get_job(page_number):
     global page_index 
     for i in range(0, page_number):
         if i == 0:
-            filters = '/jobs?q=%s&l=%s' % (job.replace(' ','+').lower(), urllib.parse.quote_plus(city))
+            filters = '/jobs?q=%s&l=%s' % (job.replace(' ','+').lower(), parse.quote_plus(city))
         else:
             page_index = i*10
-            filters = '/jobs?q=%s&l=%s&start=%s' % (job.replace(' ','+').lower(), urllib.parse.quote_plus(city),page_index)
+            filters = '/jobs?q=%s&l=%s&start=%s' % (job.replace(' ','+').lower(), parse.quote_plus(city),page_index)
 
         request_url = base_url + filters
 
@@ -70,7 +72,7 @@ def get_job(page_number):
             print ("descrição")
             print(desc)            
 
-            if ( check_regex(desc) and check_regex(emprego) ):
+            if ( check_regex(desc) and check_regex(emprego) and check_regex(empresa) and check_regex(link) ):
                 f = open('vagas.txt','a+')
                 f.write('Vaga: %s \nEmpresa: %s \nDescrição: %s \nLink: %s \n\n' % (emprego,empresa,desc,link))
                 f.close()

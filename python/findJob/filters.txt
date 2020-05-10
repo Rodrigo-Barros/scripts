@@ -1,6 +1,13 @@
+rc/clk?
 senior
 sênior
 pleno
 ^java$
 C#
 .Net
+santos
+sorocaba
+araçatuba
+atibaia
+campinas
+diadema
