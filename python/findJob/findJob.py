@@ -1,26 +1,41 @@
-# encoding: utf-8
+# -*- coding: utf-8 -*-
 import urllib 
 from urllib import parse
 from urllib import request
 from bs4 import BeautifulSoup
 from time import sleep
 import re
+import sys
+import os
 
+help = 'Ajuda:\n\n'
+help += '--clear limpa os arquivos vagas.txt e vagas_excluidas.txt\n'
+help += '--exit  pode ser usuado com qualquer comando para finalizar a execução do script\n'
+help += '--show  Mostra as vagas incluidas com base no filtro após a busca do script'
+# arguments
+if len(sys.argv) > 1:
+    for arg in sys.argv:
+        if arg == '--clear':
+            os.system('rm vagas.txt vagas_excluidas.txt')
+        if arg == '--help':
+            print(help)
+            exit(0)
+        if arg == '--exit':
+            exit(0)
+        if arg == '--show':
+            show_in_editor=True
+
+# main program
 base_url='https://www.indeed.com.br'
 print('Digite as informações a seguir para fazer a sua consulta')
-job = input('Digite o cargo desejado (Padrão Programador PHP): ')
-city = input('Digite a cidade desajada (Padrão São Paulo): ')
+job = input('Digite o cargo desejado (Padrão Programador PHP): ') or 'Programador PHP'
+city = input('Digite a cidade desajada (Padrão São Paulo, SP): ') or 'São Paulo, SP'
 number_of_pages_to_look_resuts = int(input('Digite quantas páginas você deseja vasculhar no site (Padrão 10 páginas): ') or 10)
 timeout_between_pages = int(input('Digite uma valor em segundos para esperar entre uma página e outra (Padrão 5 segundos): ') or 5)
 filters = open("filters.txt","r").readlines()
 
-
 page_index = 0
 
-if job == '':
-    job = 'Programador PHP'
-if city == '':
-    city = 'São Paulo'
 print('cargo selecionado %s' % job)
 print('cidade escolhida %s' % city)
 
@@ -57,20 +72,18 @@ def get_job(page_number):
         #test = soup.find(id='resultsCol')
         for info in resultados.find_all('div',{'class':'jobsearch-SerpJobCard'}):
             empresa=info.span.text.strip()
-            print('empresa')
-            print(info.span.text)
+            print( 'Empresa: %s' % empresa )
 
-            emprego=info.find('div',{'class':'title'}).text.strip()
-            print('emprego')
-            print (emprego)
+            emprego=info.find('h2',{'class':'title'}).text.strip()
+            print( 'Emprego: %s' % emprego )
             
-            link=('%s%s' % (base_url,info.div.a['href']))
-            print('link')
-            print(link)
+            link=('%s%s' % (base_url,info.h2.a['href']))
+            print('link %s' % link)
 
             desc = info.find('div',{'class':'summary'}).text.strip()
-            print ("descrição")
-            print(desc)            
+            print ( "Descrição: %s" % desc )
+
+            print('\n')
 
             if ( check_regex(desc) and check_regex(emprego) and check_regex(empresa) and check_regex(link) ):
                 f = open('vagas.txt','a+')
@@ -85,6 +98,9 @@ def get_job(page_number):
         page_index = 1 if page_index == 0 else (page_index/10)+1
         print('página %s' % int(page_index))
 
+        if page_index == page_number and show_in_editor:
+            os.system('less vagas.txt')
+            exit(0)
         sleep(timeout_between_pages)
 
 get_job(number_of_pages_to_look_resuts)
