@@ -1,13 +1,15 @@
-rc/clk?
-senior
-sênior
-pleno
-^java$
-C#
-.Net
-santos
-sorocaba
 araçatuba
 atibaia
+C#
 campinas
 diadema
+^java$
+.Net
+pcd
+pleno
+rc/clk?
+santo andré
+santos
+senior
+sênior
+sorocaba

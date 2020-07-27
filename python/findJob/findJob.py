@@ -71,27 +71,36 @@ def get_job(page_number):
         
         #test = soup.find(id='resultsCol')
         for info in resultados.find_all('div',{'class':'jobsearch-SerpJobCard'}):
+
             empresa=info.span.text.strip()
             print( 'Empresa: %s' % empresa )
+
+            cidade = info.find('span',{'class':'location'})
+            if hasattr(cidade,'text') == False:
+                cidade = info.find('div',{ 'class':'location' })
+            cidade = cidade.text.strip()
+
+            print( 'Cidade: %s' % cidade )
 
             emprego=info.find('h2',{'class':'title'}).text.strip()
             print( 'Emprego: %s' % emprego )
             
             link=('%s%s' % (base_url,info.h2.a['href']))
-            print('link %s' % link)
+            print( 'link %s' % link )
 
             desc = info.find('div',{'class':'summary'}).text.strip()
             print ( "Descrição: %s" % desc )
 
+
             print('\n')
 
-            if ( check_regex(desc) and check_regex(emprego) and check_regex(empresa) and check_regex(link) ):
+            if ( check_regex(desc) and check_regex(emprego) and check_regex(empresa) and check_regex(link) and check_regex(cidade) ):
                 f = open('vagas.txt','a+')
-                f.write('Vaga: %s \nEmpresa: %s \nDescrição: %s \nLink: %s \n\n' % (emprego,empresa,desc,link))
+                f.write('Vaga: %s \nEmpresa: %s \nCidade: %s \nDescrição: %s \nLink: %s \n\n' % (emprego,empresa,cidade,desc,link))
                 f.close()
             else:
                 f = open('vagas_excluidas.txt','a+')
-                f.write('Vaga: %s \nEmpresa:%s \nDescrição: %s\ \nLink: %s \n\n' % (emprego,empresa,desc,link))
+                f.write('Vaga: %s \nEmpresa:%s \nCidade: %s \nDescrição: %s\ \nLink: %s \n\n' % (emprego,empresa,cidade,desc,link))
                 f.close()
             
 
