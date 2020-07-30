@@ -12,6 +12,7 @@ help = 'Ajuda:\n\n'
 help += '--clear limpa os arquivos vagas.txt e vagas_excluidas.txt\n'
 help += '--exit  pode ser usuado com qualquer comando para finalizar a execução do script\n'
 help += '--show  Mostra as vagas incluidas com base no filtro após a busca do script'
+show_in_editor=False
 # arguments
 if len(sys.argv) > 1:
     for arg in sys.argv:
