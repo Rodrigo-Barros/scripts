@@ -107,10 +107,13 @@ def get_job(page_number):
 
         page_index = 1 if page_index == 0 else (page_index/10)+1
         print('página %s' % int(page_index))
-
-        if page_index == page_number and show_in_editor:
+        
+        vagas_exists = True if os.system('ls vagas.txt 2> /dev/null')==0 else False
+        if page_index == page_number and show_in_editor and vagas_exists:
             os.system('less vagas.txt')
             exit(0)
+        else:
+            print('Nenhuma vaga foi encontrada usando os critérios definidos em filters.txt')
         sleep(timeout_between_pages)
 
 get_job(number_of_pages_to_look_resuts)
