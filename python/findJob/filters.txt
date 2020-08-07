@@ -1,15 +1,24 @@
 araçatuba
 atibaia
+barueri
 C#
 campinas
+carapicuíba
 diadema
+guarulhos
 ^java$
 .Net
+osasco
+pagead\/clk\?
 pcd
 pleno
-rc/clk?
+rc\/clk\?
 santo andré
+santo amaro
 santos
+são bernardo
+são caetano
 senior
 sênior
 sorocaba
+taboão da Serra

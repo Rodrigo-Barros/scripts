@@ -57,10 +57,10 @@ def get_job(page_number):
     global page_index 
     for i in range(0, page_number):
         if i == 0:
-            filters = '/jobs?q=%s&l=%s' % (job.replace(' ','+').lower(), parse.quote_plus(city))
+            filters = '/jobs?q=%s&l=%s' % ( parse.quote_plus(job), parse.quote_plus(city))
         else:
             page_index = i*10
-            filters = '/jobs?q=%s&l=%s&start=%s' % (job.replace(' ','+').lower(), parse.quote_plus(city),page_index)
+            filters = '/jobs?q=%s&l=%s&start=%s' % ( parse.quote_plus(job), parse.quote_plus(city),page_index)
 
         request_url = base_url + filters
 
@@ -108,11 +108,11 @@ def get_job(page_number):
         page_index = 1 if page_index == 0 else (page_index/10)+1
         print('página %s' % int(page_index))
         
-        vagas_exists = True if os.system('ls vagas.txt 2> /dev/null')==0 else False
+        vagas_exists = True if os.system('ls vagas.txt &> /dev/null')==0 else False
         if page_index == page_number and show_in_editor and vagas_exists:
-            os.system('less vagas.txt')
+            os.system('less vagas.txt 1')
             exit(0)
-        else:
+        elif page_index == page_number and vagas_exists==False:
             print('Nenhuma vaga foi encontrada usando os critérios definidos em filters.txt')
         sleep(timeout_between_pages)
 
